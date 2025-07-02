@@ -55,11 +55,15 @@ async function main() {
   writeJsonFile(chemistData, chemistJsonPath);
 
   // Process drinks.yml
-  const drinksUrl = 'https://raw.githubusercontent.com/space-wizards/space-station-14/master/Resources/Prototypes/Recipes/Reactions/drinks.yml';
+  const drinksUrl = 'https://raw.githubusercontent.com/DeltaV-Station/Delta-v/master/Resources/Prototypes/Recipes/Reactions/drinks.yml';
+  const drinksUrl2 = 'https://raw.githubusercontent.com/DeltaV-Station/Delta-v/refs/heads/master/Resources/Prototypes/_DV/Recipes/Reactions/drinks.yml'
   const drinksYaml = await get(drinksUrl)
+  const drinksYaml2 = await get(drinksUrl2)
   const drinksData = yamlToJson(drinksYaml);
+  const drinksData2 = yamlToJson(drinksYaml2);
+  const drinks = {...drinksData, ...drinksData2};
   const drinksJsonPath = path.join(scriptDir, '../bartender/data.json');
-  writeJsonFile(drinksData, drinksJsonPath);
+  writeJsonFile(drinks, drinksJsonPath);
 }
 
 async function get(url) {
