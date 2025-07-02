@@ -14,8 +14,8 @@ main()
 
 async function main() {
   // Process chemicals.yml
-  const chemicalsUrl = 'https://raw.githubusercontent.com/space-wizards/space-station-14/master/Resources/Prototypes/Recipes/Reactions/chemicals.yml';
-  const medicineReagentsUrl = 'https://raw.githubusercontent.com/space-wizards/space-station-14/master/Resources/Prototypes/Reagents/medicine.yml';
+  const chemicalsUrl = 'https://raw.githubusercontent.com/DeltaV-Station/Delta-v/master/Resources/Prototypes/Recipes/Reactions/chemicals.yml';
+  const medicineReagentsUrl = 'https://raw.githubusercontent.com/DeltaV-Station/Delta-v/master/Resources/Prototypes/Reagents/medicine.yml';
 
   
 
@@ -29,7 +29,7 @@ async function main() {
   const medicineReagentsData = yamlToJson(medicineReagentsYaml);
 
   // Process medicine.yml
-  const medicineUrl = 'https://raw.githubusercontent.com/space-wizards/space-station-14/master/Resources/Prototypes/Recipes/Reactions/medicine.yml';
+  const medicineUrl = 'https://raw.githubusercontent.com/DeltaV-Station/Delta-v/master/Resources/Prototypes/Recipes/Reactions/medicine.yml';
   const medicineYaml = await get(medicineUrl)
   const medicineData = yamlToJson(medicineYaml);
 
@@ -56,13 +56,16 @@ async function main() {
 
   // Process drinks.yml
   const drinksUrl = 'https://raw.githubusercontent.com/DeltaV-Station/Delta-v/master/Resources/Prototypes/Recipes/Reactions/drinks.yml';
-  const drinksUrl2 = 'https://raw.githubusercontent.com/DeltaV-Station/Delta-v/refs/heads/master/Resources/Prototypes/_DV/Recipes/Reactions/drinks.yml'
-  const drinksYaml = await get(drinksUrl)
-  const drinksYaml2 = await get(drinksUrl2)
+  const drinksUrl2 = 'https://raw.githubusercontent.com/DeltaV-Station/Delta-v/master/Resources/Prototypes/_DV/Recipes/Reactions/drinks.yml';
+  const drinksUrl3 = 'https://raw.githubusercontent.com/DeltaV-Station/Delta-v/master/Resources/Prototypes/Nyanotrasen/Recipes/Reactions/drink.yml';
+  const drinksYaml = await get(drinksUrl);
+  const drinksYaml2 = await get(drinksUrl2);
+  const drinksYaml3 = await get(drinksUrl3);
   const drinksData = yamlToJson(drinksYaml);
   const drinksData2 = yamlToJson(drinksYaml2);
+  const drinksData3 = yamlToJson(drinksYaml3);
   const drinksJsonPath = path.join(scriptDir, '../bartender/data.json');
-  writeJsonFile(drinksData.concat(drinksData2), drinksJsonPath);
+  writeJsonFile(drinksData.concat(drinksData2).concat(drinksData3), drinksJsonPath);
 }
 
 async function get(url) {
