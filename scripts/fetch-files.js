@@ -61,9 +61,8 @@ async function main() {
   const drinksYaml2 = await get(drinksUrl2)
   const drinksData = yamlToJson(drinksYaml);
   const drinksData2 = yamlToJson(drinksYaml2);
-  const drinks = {...drinksData, ...drinksData2};
   const drinksJsonPath = path.join(scriptDir, '../bartender/data.json');
-  writeJsonFile(drinks, drinksJsonPath);
+  writeJsonFile(drinksData.concat(drinksData2), drinksJsonPath);
 }
 
 async function get(url) {
